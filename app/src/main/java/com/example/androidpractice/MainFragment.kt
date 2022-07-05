@@ -17,17 +17,15 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
         val loginInput: EditText = view.findViewById(R.id.loginInput)
         val passwordInput: EditText = view.findViewById(R.id.passwordInput)
         view.loginButton.setOnClickListener {
-           val passwordInput = passwordInput.text.toString()
-           val loginInput = loginInput.text.toString()
-            if(passwordInput == loginInput){
+            val passwordInput = passwordInput.text.toString()
+            val loginInput = loginInput.text.toString()
+            if (passwordInput == loginInput && passwordInput != "" && loginInput != ""){
                 findNavController().navigate(MainFragmentDirections.openWelcomeFragment(loginInput))
-            }
-            else{
+            } else {
                 Toast.makeText(context, "Логин и пароль не совпадают", Toast.LENGTH_SHORT).show()
             }
         }
