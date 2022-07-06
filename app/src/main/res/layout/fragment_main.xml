@@ -8,14 +8,14 @@
     android:layout_height="match_parent"
     android:background="@color/yellow"
     android:orientation="vertical"
-    tools:context=".MainFragment">
+    tools:context=".LoginFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/passwordInput"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="230dp"
-        android:layout_above="@id/passwordInput">
+        android:layout_marginTop="230dp">
 
         <EditText
             android:id="@+id/loginInput"
@@ -28,15 +28,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Введите пароль"/>
+            android:hint="Введите пароль" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,8 +44,8 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:text="LOGIN"/>
+        android:layout_marginTop="10dp"
+        android:text="LOGIN" />
 
 </LinearLayout>

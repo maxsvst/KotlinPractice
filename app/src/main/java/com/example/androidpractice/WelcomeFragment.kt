@@ -13,8 +13,7 @@ class WelcomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_welcome, container, false)
+        val view = inflater.inflate(R.layout.fragment_welcome, container, false)
         val loginArgument = WelcomeFragmentArgs.fromBundle(this.requireArguments())
         view.welcomeTextView.text = "Welcome, " + loginArgument.savedLogin.toString()
         return view

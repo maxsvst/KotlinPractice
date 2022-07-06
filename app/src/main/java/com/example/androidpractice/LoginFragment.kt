@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
 
-class MainFragment : Fragment() {
+class LoginFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +24,7 @@ class MainFragment : Fragment() {
             val passwordInput = passwordInput.text.toString()
             val loginInput = loginInput.text.toString()
             if (passwordInput == loginInput && passwordInput != "" && loginInput != ""){
-                findNavController().navigate(MainFragmentDirections.openWelcomeFragment(loginInput))
+                findNavController().navigate(LoginFragmentDirections.openWelcomeFragment(loginInput))
             } else {
                 Toast.makeText(context, "Логин и пароль не совпадают", Toast.LENGTH_SHORT).show()
             }
