@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    class NavigationImplementation(private val fragment: Fragment): INavigation{
+    class NavigationImplementation(private val fragment: Fragment): Navigator{
         override fun navigateTo(direction: NavDirections) {
             try{
                 fragment.findNavController().navigate(direction)
