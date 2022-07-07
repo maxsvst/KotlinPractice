@@ -2,6 +2,6 @@ package com.example.androidpractice
 
 import androidx.navigation.NavDirections
 
-interface Navigator {
+interface INavigation {
      fun navigateTo(direction: NavDirections)
 }
