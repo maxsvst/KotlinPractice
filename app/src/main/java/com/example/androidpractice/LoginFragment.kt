@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlinx.android.synthetic.main.fragment_main.view.*
 
 
 class LoginFragment : Fragment() {
@@ -18,12 +17,10 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
         val loginInput: EditText = view.findViewById(R.id.loginInput)
         val passwordInput: EditText = view.findViewById(R.id.passwordInput)
-        val model: MyViewModel by viewModels()
-
-        view.loginButton.setOnClickListener() {
+        view.loginButton.setOnClickListener {
             val passwordInput = passwordInput.text.toString()
             val loginInput = loginInput.text.toString()
             if (passwordInput == loginInput && passwordInput != "" && loginInput != ""){
