@@ -1,21 +1,47 @@
 package com.example.androidpractice
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_welcome.view.*
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class WelcomeFragment : Fragment() {
+
+    private var adapter = WelcomeRecyclerViewAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_welcome, container, false)
-        val loginArgument = WelcomeFragmentArgs.fromBundle(this.requireArguments())
-        view.welcomeTextView.text = "Welcome, " + loginArgument.savedLogin.toString()
-        return view
+        return inflater.inflate(R.layout.fragment_welcome, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val viewModelProvider by lazy {
+            ViewModelProvider(this, object : ViewModelProvider.Factory {
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return WelcomeFragmentViewModel(ItemsProvider()) as T
+                }
+            })
+        }
+        val viewModel: WelcomeFragmentViewModel by lazy {
+            viewModelProvider[WelcomeFragmentViewModel::class.java]
+        }
+        val recyclerView: RecyclerView = view.findViewById(R.id.welcome_fragment_recycler_view)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        viewModel.getItems()
+        viewModel.items.observe(
+            viewLifecycleOwner, {
+                if (!it.isNullOrEmpty()) {
+                    adapter.setList(it)
+                }
+            })
     }
 }
