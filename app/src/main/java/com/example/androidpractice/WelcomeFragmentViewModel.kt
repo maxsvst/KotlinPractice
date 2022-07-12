@@ -1,13 +1,16 @@
 package com.example.androidpractice
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 
 class WelcomeFragmentViewModel(private val itemsProvider: ItemsProvider): ViewModel() {
 
-    val items: MutableLiveData<List<Item>> = liveData{
+    private val items: LiveData<List<Item>> =
+    liveData {
         emit(itemsProvider.getItems())
-    } as MutableLiveData<List<Item>>
+    }
 
+    val itemsLive
+    get() = items
 }

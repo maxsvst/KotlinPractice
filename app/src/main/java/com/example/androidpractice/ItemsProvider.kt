@@ -1,8 +1,10 @@
 package com.example.androidpractice
 
+import kotlinx.coroutines.delay
+
 class ItemsProvider {
 
-    fun getItems(): List<Item> {
+   suspend fun getItems(): List<Item> {
         val result = List(10) { number ->
                 if (number % 2 == 0) {
                     Item.AItem("$number - AItem object")
@@ -11,7 +13,7 @@ class ItemsProvider {
                     Item.BItem("$number - BItem object")
                 }
             }
-        Thread.sleep(1500)
+        delay(1000L)
         return result
     }
 }

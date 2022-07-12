@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -36,7 +37,7 @@ class WelcomeFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.welcome_fragment_recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.items.observe(
+        viewModel.itemsLive.observe(
             viewLifecycleOwner
         ) {
             if (!it.isNullOrEmpty()) {
