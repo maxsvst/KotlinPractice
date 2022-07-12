@@ -22,8 +22,6 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
-//    private val viewModel: LoginFragmentViewModel = ViewModelProvider(this)[LoginFragmentViewModel::class.java]
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mainActivity: FragmentActivity = requireActivity()
@@ -35,7 +33,7 @@ class LoginFragment : Fragment() {
                 }
             })
         }
-       val loginFragmentViewModel: LoginFragmentViewModel by lazy{
+        val loginFragmentViewModel: LoginFragmentViewModel by lazy{
             viewModelProvider[LoginFragmentViewModel::class.java]
         }
         val loginInput: EditText? = view.findViewById(R.id.loginInput)
@@ -47,5 +45,4 @@ class LoginFragment : Fragment() {
             loginFragmentViewModel.isLoginAndPasswordMatch(password, login)
         }
     }
-
 }
