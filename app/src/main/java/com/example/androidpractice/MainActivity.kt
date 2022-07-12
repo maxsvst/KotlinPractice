@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
-import javax.inject.Inject
 
 class MainActivity: AppCompatActivity(), Navigator {
 
