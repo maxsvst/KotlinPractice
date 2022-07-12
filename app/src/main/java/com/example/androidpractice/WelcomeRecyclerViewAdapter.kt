@@ -33,10 +33,10 @@ class WelcomeRecyclerViewAdapter :
         private val textView: TextView = itemsView.findViewById(R.id.recycler_view_item_text)
         fun bind(item: Item) {
             when (item) {
-                is AItem -> {
+                is Item.AItem -> {
                     textView.text = item.title
                 }
-                is BItem -> {
+                is Item.BItem -> {
                     textView.text = item.title
                 }
             }

@@ -13,6 +13,16 @@ import androidx.recyclerview.widget.RecyclerView
 class WelcomeFragment : Fragment() {
 
     private var adapter = WelcomeRecyclerViewAdapter()
+    private val viewModelProvider by lazy {
+        ViewModelProvider(this, object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return WelcomeFragmentViewModel(ItemsProvider()) as T
+            }
+        })
+    }
+    private val viewModel: WelcomeFragmentViewModel by lazy {
+        viewModelProvider[WelcomeFragmentViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,25 +33,15 @@ class WelcomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModelProvider by lazy {
-            ViewModelProvider(this, object : ViewModelProvider.Factory {
-                override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                    return WelcomeFragmentViewModel(ItemsProvider()) as T
-                }
-            })
-        }
-        val viewModel: WelcomeFragmentViewModel by lazy {
-            viewModelProvider[WelcomeFragmentViewModel::class.java]
-        }
         val recyclerView: RecyclerView = view.findViewById(R.id.welcome_fragment_recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.getItems()
         viewModel.items.observe(
-            viewLifecycleOwner, {
-                if (!it.isNullOrEmpty()) {
-                    adapter.setList(it)
-                }
-            })
+            viewLifecycleOwner
+        ) {
+            if (!it.isNullOrEmpty()) {
+                adapter.setList(it)
+            }
+        }
     }
 }
