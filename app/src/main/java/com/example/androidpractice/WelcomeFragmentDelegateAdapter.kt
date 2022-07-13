@@ -1,14 +1,10 @@
 package com.example.androidpractice
 
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegate
 
 object WelcomeFragmentDelegateAdapter {
-
-    val welcomeRecyclerViewAdapterDelegate =
-        adapterDelegate<Item, Item>(R.layout.fragment_welcome) {
-
-        }
 
     val aItemAdapterDelegate = adapterDelegate<Item.AItem, Item>(R.layout.recycler_item) {
 

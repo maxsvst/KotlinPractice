@@ -13,7 +13,10 @@ import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
 class WelcomeFragment : Fragment() {
 
-    private var adapter = ListDelegationAdapter(WelcomeFragmentDelegateAdapter.welcomeRecyclerViewAdapterDelegate)
+    private var adapter = ListDelegationAdapter(
+        WelcomeFragmentDelegateAdapter.aItemAdapterDelegate,
+        WelcomeFragmentDelegateAdapter.bItemAdapterDelegate
+    )
     private val viewModelProvider by lazy {
         ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -41,7 +44,8 @@ class WelcomeFragment : Fragment() {
             viewLifecycleOwner
         ) {
             if (!it.isNullOrEmpty()) {
-                    adapter.items = it
+                  adapter.items = it
+                  adapter.notifyDataSetChanged()
                 }
             }
         }
