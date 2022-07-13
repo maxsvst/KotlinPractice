@@ -44,10 +44,10 @@ class WelcomeFragment : Fragment() {
             viewLifecycleOwner
         ) {
             if (!it.isNullOrEmpty()) {
-                  adapter.items = it
-                  adapter.notifyDataSetChanged()
-                }
+                adapter.items = it
+                adapter.notifyDataSetChanged()
             }
         }
-
     }
+
+}
