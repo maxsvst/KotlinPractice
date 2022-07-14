@@ -9,10 +9,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
 class WelcomeFragment : Fragment() {
 
-    private var adapter = WelcomeRecyclerViewAdapter()
+    private var adapter = ListDelegationAdapter(
+        WelcomeFragmentDelegateAdapter.aItemAdapterDelegate,
+        WelcomeFragmentDelegateAdapter.bItemAdapterDelegate
+    )
     private val viewModelProvider by lazy {
         ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -40,8 +44,10 @@ class WelcomeFragment : Fragment() {
             viewLifecycleOwner
         ) {
             if (!it.isNullOrEmpty()) {
-                adapter.setList(it)
+                adapter.items = it
+                adapter.notifyDataSetChanged()
             }
         }
     }
+
 }
