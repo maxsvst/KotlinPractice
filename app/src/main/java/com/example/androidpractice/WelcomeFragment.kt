@@ -59,8 +59,10 @@ class WelcomeFragment : Fragment() {
                 viewLifecycleOwner
             ) {
                 if (!it.isNullOrEmpty()) {
+                    val diffCallback = WelcomeCallback(viewModel.itemsLive.value.orEmpty(), it)
+                    val diffResult = DiffUtil.calculateDiff(diffCallback)
                     adapter.items = it
-                    adapter.notifyDataSetChanged()
+                    diffResult.dispatchUpdatesTo(adapter)
                 }
             }
         }
