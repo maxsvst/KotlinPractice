@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import kotlinx.android.synthetic.main.fragment_welcome.*
 
 class WelcomeFragment : Fragment() {
 
@@ -25,6 +27,9 @@ class WelcomeFragment : Fragment() {
         })
     }
     private val viewModel: WelcomeFragmentViewModel by lazy {
+        viewModelProvider[WelcomeFragmentViewModel::class.java]
+    }
+    private val welcomeFragmentViewModel: WelcomeFragmentViewModel by lazy {
         viewModelProvider[WelcomeFragmentViewModel::class.java]
     }
 
@@ -46,6 +51,17 @@ class WelcomeFragment : Fragment() {
             if (!it.isNullOrEmpty()) {
                 adapter.items = it
                 adapter.notifyDataSetChanged()
+            }
+        }
+        addNewListButton.setOnClickListener {
+            welcomeFragmentViewModel.newItemsLive
+            viewModel.newItemsLive.observe(
+                viewLifecycleOwner
+            ) {
+                if (!it.isNullOrEmpty()) {
+                    adapter.items = it
+                    adapter.notifyDataSetChanged()
+                }
             }
         }
     }
