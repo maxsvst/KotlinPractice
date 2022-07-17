@@ -23,11 +23,6 @@ class ItemsProvider {
             } else {
                 Item.BItem(number,"BItem object")
             }
-//            if (number == 2 || number == 5 || number == 7) {
-//                Item.AItem("$number - AItem object")
-//            } else {
-//                Item.BItem("$number - BItem object")
-//            }
         }
         delay(1000L)
         return result
