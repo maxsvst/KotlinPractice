@@ -4,13 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 
-class WelcomeFragmentViewModel(private val itemsProvider: ItemsProvider): ViewModel() {
+class WelcomeFragmentViewModel(private val itemsProvider: ItemsProvider) : ViewModel() {
 
     private val items: LiveData<List<Item>> =
-    liveData {
-        emit(itemsProvider.getItems())
-    }
+        liveData {
+            emit(itemsProvider.getItems())
+        }
 
     val itemsLive
-    get() = items
+        get() = items
+
+    private val newItems: LiveData<List<Item>> =
+        liveData {
+            emit(itemsProvider.getNewItems())
+        }
+
+    val newItemsLive
+        get() = newItems
+
+
 }
